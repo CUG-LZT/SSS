@@ -61,227 +61,227 @@ function changeData(data){
 	
 	
 	if(data.p1c==1){
-		$("#p1").html('p1&nbsp:&nbsp' + data.p1);
+		$("#p1").html('p1&nbsp:' + data.p1);
 		$("#p1").css("color","#00DB00");
 	}
 	else{
-		$("#p1").html('p1&nbsp:&nbsp' + data.p1 );
+		$("#p1").html('p1&nbsp:' + data.p1 );
 		$("#p1").css("color","#FF5151");
 	}
 
 	if(data.p2c==1){
-		$("#p2").html('p2&nbsp:&nbsp' + data.p2 );
+		$("#p2").html('p2&nbsp:' + data.p2 );
 		$("#p2").css("color","#00DB00");;
 	}
 	else{
-		$("#p2").html('p2&nbsp:&nbsp' + data.p2 );
+		$("#p2").html('p2&nbsp:' + data.p2 );
 		$("#p2").css("color","#FF5151");
 	}
 	
 	if(data.p3c ==1){
-		$("#p3").html('p3&nbsp:&nbsp' + data.p3 );
+		$("#p3").html('p3&nbsp:' + data.p3 );
 		$("#p3").css("color","#00DB00");
 	}
 	else{
-		$("#p3").html('p3&nbsp:&nbsp' + data.p3 );
+		$("#p3").html('p3&nbsp:' + data.p3 );
 		$("#p3").css("color","#FF5151");
 	}
 	if(data.p4c ==1){
-		$("#p4").html('p4&nbsp:&nbsp' + data.p4 );
+		$("#p4").html('p4&nbsp:' + data.p4 );
 		$("#p4").css("color","#00DB00");
 	}
 	else{
-		$("#p4").html('p4&nbsp:&nbsp' + data.p4 );
+		$("#p4").html('p4&nbsp:' + data.p4 );
 		$("#p4").css("color","#FF5151");
 	}
 	if(data.p5c ==1){
-		$("#p5").html('p5&nbsp:&nbsp' + data.p5 );
+		$("#p5").html('p5&nbsp:' + data.p5 );
 		$("#p5").css("color","#00DB00");
 	}
 	else{
-		$("#p5").html('p5&nbsp:&nbsp' + data.p5 );
+		$("#p5").html('p5&nbsp:' + data.p5 );
 		$("#p5").css("color","#FF5151");
 	}
 	if(data.p6c ==1){
-		$("#p6").html('p6&nbsp:&nbsp' + data.p6 );
+		$("#p6").html('p6&nbsp:' + data.p6 );
 		$("#p6").css("color","#00DB00");
 	}
 	else{
-		$("#p6").html('p6&nbsp:&nbsp' + data.p6 );
+		$("#p6").html('p6&nbsp:' + data.p6 );
 		$("#p6").css("color","#FF5151");
 	}
 	if(data.p7c ==1){
-		$("#p7").html('p7&nbsp:&nbsp' + data.p7 );
+		$("#p7").html('p7&nbsp:' + data.p7 );
 		$("#p7").css("color","#00DB00");
 	}
 	else{
-		$("#p7").html('p7&nbsp:&nbsp' + data.p7 );
+		$("#p7").html('p7&nbsp:' + data.p7 );
 		$("#p7").css("color","#FF5151");
 	}
 	if(data.p8c ==1){
-		$("#p8").html('p8&nbsp:&nbsp' + data.p8 );
+		$("#p8").html('p8&nbsp:' + data.p8 );
 		$("#p8").css("color","#00DB00");
 	}
 	else{
-		$("#p8").html('p8&nbsp:&nbsp' + data.p8 );
+		$("#p8").html('p8&nbsp:' + data.p8 );
 		$("#p8").css("color","#FF5151");
 	}
 	if(data.p9c ==1){
-		$("#p9").html('p9&nbsp:&nbsp' + data.p9 );
+		$("#p9").html('p9&nbsp:' + data.p9 );
 		$("#p9").css("color","#00DB00");
 	}else{
-		$("#p9").html('p9&nbsp:&nbsp' + data.p9 );
+		$("#p9").html('p9&nbsp:' + data.p9 );
 		$("#p9").css("color","#FF5151");
 	}
 	if(data.p10c ==1){ 
-		$("#p10").html('p10&nbsp:&nbsp' + data.p10 );
+		$("#p10").html('p10&nbsp:' + data.p10 );
 		$("#p10").css("color","#00DB00");
 	}else{
-		$("#p10").html('p10&nbsp:&nbsp' + data.p10 );
+		$("#p10").html('p10&nbsp:' + data.p10 );
 		$("#p10").css("color","#FF5151");
 	}
 	if(data.p11c ==1){
-		$("#p11").html('p11&nbsp:&nbsp' + data.p11 );
+		$("#p11").html('p11&nbsp:' + data.p11 );
 		$("#p11").css("color","#00DB00");
 	}
 	else{
-		$("#p11").html('p11&nbsp:&nbsp' + data.p11 );
+		$("#p11").html('p11&nbsp:' + data.p11 );
 		$("#p11").css("color","#FF5151");
 	}
 	if(data.p12c ==1){
-		$("#p12").html('p12&nbsp:&nbsp' + data.p12 );
+		$("#p12").html('p12&nbsp:' + data.p12 );
 		$("#p12").css("color","#00DB00");
 	}
 	else{
-		$("#p12").html('p12&nbsp:&nbsp' + data.p12 );
+		$("#p12").html('p12&nbsp:' + data.p12 );
 		$("#p12").css("color","#FF5151");
 	}
 	if(data.p13c ==1){
-		$("#p13").html('p13&nbsp:&nbsp' + data.p13 );
+		$("#p13").html('p13&nbsp:' + data.p13 );
 		$("#p13").css("color","#00DB00");
 	}
 	else{
-		$("#p13").html('p13&nbsp:&nbsp' + data.p13 );
+		$("#p13").html('p13&nbsp:' + data.p13 );
 		$("#p13").css("color","#FF5151");
 	}
 	if(data.p14c ==1){
-		$("#p14").html('p14&nbsp:&nbsp' + data.p14 );
+		$("#p14").html('p14&nbsp:' + data.p14 );
 		$("#p14").css("color","#00DB00");
 	}
 	else{
-		$("#p14").html('p14&nbsp:&nbsp' + data.p14 );
+		$("#p14").html('p14&nbsp:' + data.p14 );
 		$("#p14").css("color","#FF5151");
 	}
 	if(data.p15c ==1){
-		$("#p15").html('p15&nbsp:&nbsp' + data.p15 );
+		$("#p15").html('p15&nbsp:' + data.p15 );
 		$("#p15").css("color","#00DB00");
 	}
 	else{
-		$("#p15").html('p15&nbsp:&nbsp' + data.p15 );
+		$("#p15").html('p15&nbsp:' + data.p15 );
 		$("#p15").css("color","#FF5151");
 	}
 	if(data.p16c ==1){
-		$("#p16").html('p16&nbsp:&nbsp' + data.p16 );
+		$("#p16").html('p16&nbsp:' + data.p16 );
 		$("#p16").css("color","#00DB00");
 	}
 	else{
-		$("#p16").html('p16&nbsp:&nbsp' + data.p16 );
+		$("#p16").html('p16&nbsp:' + data.p16 );
 		$("#p16").css("color","#FF5151");
 	}
 	if(data.p17c ==1){
-		$("#p17").html('p17&nbsp:&nbsp' + data.p17 );
+		$("#p17").html('p17&nbsp:' + data.p17 );
 		$("#p17").css("color","#00DB00");
 	}
 	else{
-		$("#p17").html('p17&nbsp:&nbsp' + data.p17 );
+		$("#p17").html('p17&nbsp:' + data.p17 );
 		$("#p17").css("color","#FF5151");
 	}
 	if(data.p18c ==1){
-		$("#p18").html('p18&nbsp:&nbsp' + data.p18 );
+		$("#p18").html('p18&nbsp:' + data.p18 );
 		$("#p18").css("color","#00DB00");
 	}
 	else{
-		$("#p18").html('p18&nbsp:&nbsp' + data.p18 );
+		$("#p18").html('p18&nbsp:' + data.p18 );
 		$("#p18").css("color","#FF5151");
 	}
 	if(data.p19c ==1){
-		$("#p19").html('p19&nbsp:&nbsp' + data.p19 );
+		$("#p19").html('p19&nbsp:' + data.p19 );
 		$("#p19").css("color","#00DB00");
 	}
 	else{
-		$("#p19").html('p19&nbsp:&nbsp' + data.p19 );
+		$("#p19").html('p19&nbsp:' + data.p19 );
 		$("#p19").css("color","#FF5151");
 	}
 	if(data.p20c ==1){
-		$("#p20").html('p20&nbsp:&nbsp' + data.p20 );
+		$("#p20").html('p20&nbsp:' + data.p20 );
 		$("#p20").css("color","#00DB00");
 	}
 	else{
-		$("#p20").html('p20&nbsp:&nbsp' + data.p20 );
+		$("#p20").html('p20&nbsp:' + data.p20 );
 		$("#p20").css("color","#FF5151");
 	}
 	if(data.p21c ==1){
-		$("#p21").html('p21&nbsp:&nbsp' + data.p21 );
+		$("#p21").html('p21&nbsp:' + data.p21 );
 		$("#p21").css("color","#00DB00");
 	}
 	else{
-		$("#p21").html('p21&nbsp:&nbsp' + data.p21 );
+		$("#p21").html('p21&nbsp:' + data.p21 );
 		$("#p21").css("color","#FF5151");
 	}
 	if(data.p22c ==1){
-		$("#p22").html('p22&nbsp:&nbsp' + data.p22 );
+		$("#p22").html('p22&nbsp:' + data.p22 );
 		$("#p22").css("color","#00DB00");
 	}
 	else{
-		$("#p22").html('p22&nbsp:&nbsp' + data.p22 );
+		$("#p22").html('p22&nbsp:' + data.p22 );
 		$("#p22").css("color","#FF5151");
 	}
 	if(data.p23c ==1){
-		$("#p23").html('p23&nbsp:&nbsp' + data.p23 );
+		$("#p23").html('p23&nbsp:' + data.p23 );
 		$("#p23").css("color","#00DB00");
 	}
 	else{
-		$("#p23").html('p23&nbsp:&nbsp' + data.p23 );
+		$("#p23").html('p23&nbsp:' + data.p23 );
 		$("#p23").css("color","#FF5151");
 	}
 	if(data.p24c ==1){
-		$("#p24").html('p24&nbsp:&nbsp' + data.p24 );
+		$("#p24").html('p24&nbsp:' + data.p24 );
 		$("#p24").css("color","#00DB00");
 	}
 	else{
-		$("#p24").html('p24&nbsp:&nbsp' + data.p24 );
+		$("#p24").html('p24&nbsp:' + data.p24 );
 		$("#p24").css("color","#FF5151");
 	}
 	if(data.p25c ==1){
-		$("#p25").html('p25&nbsp:&nbsp' + data.p25 );
+		$("#p25").html('p25&nbsp:' + data.p25 );
 		$("#p25").css("color","#00DB00");
 	}
 	else{
-		$("#p25").html('p25&nbsp:&nbsp' + data.p25 );
+		$("#p25").html('p25&nbsp:' + data.p25 );
 		$("#p25").css("color","#FF5151");
 	}
 	if(data.p26c ==1){
-		$("#p26").html('p26&nbsp:&nbsp' + data.p26 );
+		$("#p26").html('p26&nbsp:' + data.p26 );
 		$("#p26").css("color","#00DB00");
 	}
 	else{
-		$("#p26").html('p26&nbsp:&nbsp' + data.p26 );
+		$("#p26").html('p26&nbsp:' + data.p26 );
 		$("#p26").css("color","#FF5151");
 	}
 	if(data.p27c ==1){
-		$("#p27").html('p27&nbsp:&nbsp' + data.p27 );
+		$("#p27").html('p27&nbsp:' + data.p27 );
 		$("#p27").css("color","#00DB00");
 	}
 	else{
-		$("#p27").html('p27&nbsp:&nbsp' + data.p27 );
+		$("#p27").html('p27&nbsp:' + data.p27 );
 		$("#p27").css("color","#FF5151");
 	}
 	if(data.p28c ==1){
-		$("#p28").html('p28&nbsp:&nbsp' + data.p28 );
+		$("#p28").html('p28&nbsp:' + data.p28 );
 		$("#p28").css("color","#00DB00");
 	}
 	else{
-		$("#p28").html('p28&nbsp:&nbsp' + data.p28 );
+		$("#p28").html('p28&nbsp:' + data.p28 );
 		$("#p28").css("color","#FF5151");
 	}
 	

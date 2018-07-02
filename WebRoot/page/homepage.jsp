@@ -121,7 +121,7 @@
 				"url" : "menuPage/lampcontrol.html"
 			}, */{
 				"menuid" : "12",
-				"menuname" : "无影灯控制","isdisplay" :3,
+				"menuname" : "报警灯控制","isdisplay" :3,
 				"icon" : "icon-log",
 				"url" : "menuPage/lampcontrol.jsp"
 			}]

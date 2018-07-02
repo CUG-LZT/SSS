@@ -160,7 +160,7 @@ function lock(){
 		}
 		if (sumoflock == 0 && sunofunlk != 0 && sumoftolock == 0
 				&& sumoftounlk == 0) {
-			var res = confirm("锁定操作会使得无影灯无法再次开启，是否继续进行锁定操作？");
+			var res = confirm("警告：锁定操作会使报警灯亮，照明电路无法再次开启！");
 			if (res == true) {
 				//alert("进行锁定id为：" + ids);
 				var res = confirm("进行锁定房间为："+ room );

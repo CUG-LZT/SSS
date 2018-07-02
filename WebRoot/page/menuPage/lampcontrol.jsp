@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   <body style="margin:50px;">
   	<table id="tt" 
-  			title="无影灯控制" 
+  			title="报警灯控制" 
   			class="easyui-datagrid" 
   			style="margin:50px;width:480px;height:550px"
   			url = 'http://172.16.10.165:8080/sss/servlet/Getdataoflamp'
