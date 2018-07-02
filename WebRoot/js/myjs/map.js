@@ -296,75 +296,75 @@ function changeData(data){
 	}
 	if(data.t2c ==0){
 		$("#sum2t").css("background","red");
-		$("#sum2tdata").html(data.t1);
+		$("#sum2tdata").html(data.t2);
 	}
 	else{
 		$("#sum2t").css("background","#00DB00");
-		$("#sum2tdata").html(data.t1);
+		$("#sum2tdata").html(data.t2);
 	}
 	if(data.t3c ==0){
 		$("#sum3t").css("background","red");
-		$("#sum3tdata").html(data.t1);
+		$("#sum3tdata").html(data.t3);
 	}
 	else{
 		$("#sum3t").css("background","#00DB00");
-		$("#sum3tdata").html(data.t1);
+		$("#sum3tdata").html(data.t3);
 	}
 	if(data.t4c ==0){
 		$("#sum4t").css("background","red");
-		$("#sum4tdata").html(data.t1);
+		$("#sum4tdata").html(data.t4);
 	}
 	else{
 		$("#sum4t").css("background","#00DB00");
-		$("#sum4tdata").html(data.t1);
+		$("#sum4tdata").html(data.t4);
 	}
 	if(data.t5c ==0){
 		$("#sum5t").css("background","red");
-		$("#sum5tdata").html(data.t1);
+		$("#sum5tdata").html(data.t5);
 	}
 	else{
 		$("#sum5t").css("background","#00DB00");
-		$("#sum5tdata").html(data.t1);
+		$("#sum5tdata").html(data.t5);
 	}
 	if(data.t6c ==0){
 		$("#sum6t").css("background","red");
-		$("#sum6tdata").html(data.t1);
+		$("#sum6tdata").html(data.t6);
 	}
 	else{
 		$("#sum6t").css("background","#00DB00");
-		$("#sum6tdata").html(data.t1);
+		$("#sum6tdata").html(data.t6);
 	}
 	if(data.t7c ==0){
 		$("#sum7t").css("background","red");
-		$("#sum7tdata").html(data.t1);
+		$("#sum7tdata").html(data.t7);
 	}
 	else{
 		$("#sum7t").css("background","#00DB00");
-		$("#sum7tdata").html(data.t1);
+		$("#sum7tdata").html(data.t7);
 	}
 	if(data.t8c ==0){
 		$("#sum8t").css("background","red");
-		$("#sum8tdata").html(data.t1);
+		$("#sum8tdata").html(data.t8);
 	}
 	else{
 		$("#sum8t").css("background","#00DB00");
-		$("#sum8tdata").html(data.t1);
+		$("#sum8tdata").html(data.t8);
 	}
 	if(data.t9c ==0){
 		$("#sum9t").css("background","red");
-		$("#sum9tdata").html(data.t1);
+		$("#sum9tdata").html(data.t9);
 	}
 	else{
 		$("#sum9t").css("background","#00DB00");
-		$("#sum9tdata").html(data.t1);
+		$("#sum9tdata").html(data.t9);
 	}
 	if(data.t10c ==0){
 		$("#sum10t").css("background","red");
-		$("#sum10tdata").html(data.t1);
+		$("#sum10tdata").html(data.t10);
 	}
 	else{
 		$("#sum10t").css("background","#00DB00");
-		$("#sum10tdata").html(data.t1);
+		$("#sum10tdata").html(data.t10);
 	}
 	
 	
@@ -381,66 +381,66 @@ function changeData(data){
 	}
 	if(data.rh2c ==0){
 		$("#sum2rh").css("background","red");
-		$("#sum2rhdata").html(data.rh1);
+		$("#sum2rhdata").html(data.rh2);
 	}else{
 		$("#sum2rh").css("background","#00DB00");
-		$("#sum2rhdata").html(data.rh1);
+		$("#sum2rhdata").html(data.rh2);
 	}
 	if(data.rh3c ==0){
 		$("#sum3rh").css("background","red");
-		$("#sum3rhdata").html(data.rh1);
+		$("#sum3rhdata").html(data.rh3);
 	}else{
 		$("#sum3rh").css("background","#00DB00");
-		$("#sum3rhdata").html(data.rh1);
+		$("#sum3rhdata").html(data.rh3);
 	}
 	if(data.rh4c ==0){
 		$("#sum4rh").css("background","red");
-		$("#sum4rhdata").html(data.rh1);
+		$("#sum4rhdata").html(data.rh4);
 	}else{
 		$("#sum4rh").css("background","#00DB00");
-		$("#sum4rhdata").html(data.rh1);
+		$("#sum4rhdata").html(data.rh4);
 	}
 	if(data.rh5c ==0){
 		$("#sum5rh").css("background","red");
-		$("#sum5rhdata").html(data.rh1);
+		$("#sum5rhdata").html(data.rh5);
 	}else{
 		$("#sum5rh").css("background","#00DB00");
-		$("#sum5rhdata").html(data.rh1);
+		$("#sum5rhdata").html(data.rh5);
 	}
 	if(data.rh6c ==0){
 		$("#sum6rh").css("background","red");
-		$("#sum6rhdata").html(data.rh1);
+		$("#sum6rhdata").html(data.rh6);
 	}else{
 		$("#sum6rh").css("background","#00DB00");
-		$("#sum6rhdata").html(data.rh1);
+		$("#sum6rhdata").html(data.rh6);
 	}
 	if(data.rh7c ==0){
 		$("#sum7rh").css("background","red");
-		$("#sum7rhdata").html(data.rh1);
+		$("#sum7rhdata").html(data.rh7);
 	}else{
 		$("#sum7rh").css("background","#00DB00");
-		$("#sum7rhdata").html(data.rh1);
+		$("#sum7rhdata").html(data.rh7);
 	}
 	if(data.rh8c ==0){
 		$("#sum8rh").css("background","red");
-		$("#sum8rhdata").html(data.rh1);
+		$("#sum8rhdata").html(data.rh8);
 	}else{
 		$("#sum8rh").css("background","#00DB00");
-		$("#sum8rhdata").html(data.rh1);
+		$("#sum8rhdata").html(data.rh8);
 	}
 	if(data.rh9c ==0){
 		$("#sum9rh").css("background","red");
-		$("#sum9rhdata").html(data.rh1);
+		$("#sum9rhdata").html(data.rh9);
 	}else{
 		$("#sum9rh").css("background","#00DB00");
-		$("#sum9rhdata").html(data.rh1);
+		$("#sum9rhdata").html(data.rh9);
 	}
 	if(data.rh10c ==0){
 		$("#sum10rh").css("background","red");
-		$("#sum10rhdata").html(data.rh1);
+		$("#sum10rhdata").html(data.rh10);
 	}else{
 		$("#sum10rh").css("background","#00DB00");
-		$("#sum10rhdata").html(data.rh1);
+		$("#sum10rhdata").html(data.rh10);
 	}
 	
 
@@ -457,7 +457,6 @@ function ajax() {
         dataType: "json",  
         success: function (data) { 
         		changeData(data);
-        		console.log("data"+data);
         },  
         error: function (err) {
             console.log(err);  
@@ -488,7 +487,6 @@ function ajaxi() {
         		for(var i = 0 ; i < newdata.length ; i++){
         			sum[i] = newdata[i];
         		}
-        		console.log("sum"+sum);
         		inittemp(sum);//初始化锁定状态
         	}
         	else
