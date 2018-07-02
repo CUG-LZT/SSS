@@ -15,36 +15,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>登录</title>
 <link rel="stylesheet" type="text/css" href="css/styles.css">
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+
 <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/framejs/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/framejs/jquery-2.1.1.min.js"></script>
+
 </head>
 
 <body style="background-color:#DCDCDC";>
-
-	<div style = "width:100%;height:400px;background:url(picture/bg.png) no-repeat  ;">
-		
+	<div style = "width:100%;height:170px;text-align: center">
+		<h1 style="padding-top:90px"><font  color=blue >欢迎使用压差、温湿度监测系统</font></h1>
 	</div>
-	<div style = "width:100%;height:340px;">
-		<div style = "border:solid red 1px;width:450px;height:260px; position: absolute;left:50%; top:350px; margin-left:-225px; ">
-			 <div class="container">
-				<form class="form" action="dologin.jsp" method="post">
-					<input type="text" placeholder="Username" name="username">
-					<input type="password" placeholder="Password" name="password">
-					<button type="submit" id="login-button">登录</button>
-				</form>
-			</div> 
-			
-			<table border="1">
-			    <tr>
-			        <td>row 1, cell 1</td>
-			        <td>row 1, cell 2</td>
-			    </tr>
-			    <tr>
-			        <td>row 2, cell 1</td>
-			        <td>row 2, cell 2</td>
-			    </tr>
-			</table>
-
+	<div style = "width:100%;height:400px;background:url(picture/bg.png) no-repeat;">
+		<div style = "width:450px;height:260px; position: absolute;left:50%; top:350px; margin-left:-225px;margin-top:-110px;background:url(picture/dl_bg.jpg) no-repeat;opacity:0.9;">
+			<form action="dologin.jsp" method="post">
+				<table style="pdding:0px;margin:0px;position: absolute;left:50%; top:350px; margin-left:-190px;margin-top:-325px;">
+				    <tr>
+				    	<td  style="width:380px;height:70px">
+					       <div class="input-group"  style="width:100%;height:50px">
+					            <span class="input-group-addon">用户名</span>
+					            <input name="username" type="text" class="form-control" style="width:100%;height:50px;font-size:20px"  placeholder="username">
+					        </div>
+				        </td>
+				    </tr>
+				    <tr>
+				       <td  style="width:380px;height:70px">
+					       <div class="input-group"  style="width:100%;height:50px">
+					            <span class="input-group-addon">密&nbsp;&nbsp;&nbsp;码</span>
+					            <input name="password" type="password" class="form-control" style="width:100%;height:50px;font-size:20px" placeholder="password">
+					        </div>
+				        </td>
+				    </tr>
+				    <tr >
+				        <td colspan="2"  style="width:380px;height:50px;padding-top:10px"><button type="submit" id="login-button" class="btn btn-primary" style="font-size:20px;width:100%;height:50px">登录</button></td>
+				        
+				    </tr>
+				</table>
+			</form>
 		</div>
+	</div>
+	<div style = "width:100%;height:170px;">
+		
 	</div>
 
 <div style="position:absolute; bottom:0px;height:20px;width:100%;background-color:#D9FFFF;text-align:center"><span style="color:black">Powered by </span><span style="color:blue;font-family:SimHei"><img
