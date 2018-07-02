@@ -1,0 +1,353 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Static Image</title>
+<link rel="stylesheet" href="../../css/ol.css" type="text/css">
+<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css">
+
+<script src="../../js/framejs/ol.js"></script>
+<script type="text/javascript" src="../../js/framejs/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/framejs/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../js/framejs/jquery.tempgauge.js"></script>
+<script src="../../js/framejs/raphael.2.1.0.min.js"></script>
+<script src="../../js/framejs/justgage.1.0.1.min.js"></script>
+<script type="text/javascript" src="../../js/framejs/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../js/myjs/lampcontrol.js"></script>
+<link rel="stylesheet" type="text/css" href="../../js/framejs/jquery-easyui-1.3.2/demo/demo.css">
+
+
+
+</head>
+
+<style>
+/*弹窗样式*/
+.popup {
+	position: absolute;
+	background-color: white;
+	-webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+	filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+	padding: 15px;
+	border-radius: 10px;
+	border: 1px solid #cccccc;
+	bottom: 12px;
+	left: -50px;
+	min-width: 280px;
+}
+
+.popup:after,.popup:before {
+	top: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.popup:after {
+	border-top-color: white;
+	border-width: 10px;
+	left: 48px;
+	margin-left: -10px;
+}
+
+.popup:before {
+	border-top-color: #cccccc;
+	border-width: 11px;
+	left: 48px;
+	margin-left: -11px;
+}
+
+.popup-closer {
+	text-decoration: none;
+	position: absolute;
+	top: 2px;
+	right: 8px;
+}
+
+.popup-closer:after {
+	content: "✖";
+}
+
+@font-face {
+	font-family: LcdD;
+	src: url(../font/Dot_Spot.ttf) format("truetype");
+}
+
+@font-face {
+	font-family: Lcd2;
+	src: url(../font/digital_display_tfb.ttf) format("truetype");
+}
+
+p.insusfont {
+	font-family: LcdD;
+	font-size: 20px;
+	color: #00DB00;
+}
+
+span.LCD {
+	font-family: Lcd2;
+	color: black;
+	font-size: 17px;
+}
+
+@
+-webkit-keyframes twinkling { /*透明度由0到1*/ 0%{
+	opacity: 0; /*透明度为0*/
+}
+
+100%{
+opacity
+:
+1; /*透明度为1*/
+
+    
+}
+}
+@
+keyframes twinkling { /*透明度由0到1*/ 0%{
+	opacity: 0; /*透明度为0*/
+}
+100%{
+opacity
+:
+1; /*透明度为1*/
+
+    
+}
+}
+</style>
+
+<body style="background-color:#FFFFF4">
+	<div style="height:50px;width:100%;padding-top:0px;margin-top:0px">
+		<div class="demo-info" style="width:50%;float:left;margin-top:0px">
+			<h3 style="margin-top:5px">温馨提示：锁定、解锁不可同时提交</h3>
+		</div>
+		<button type="button" class="btn btn-success" style="margin-top:15px;margin-right:100px;float:right" onclick="ajax()">重新选择</button>
+		<button type="button" class="btn btn-primary" style="margin-top:15px;margin-right:50px;float:right" onclick="send()">确认操作</button>
+	</div>
+	
+	<!-- ------------------------------------------------------------------------------- -->
+	<div id="map" class="map" ></div>
+	<div id="marker" style="height:10px,width:10px;"></div>
+
+	
+
+	<div id="l20">
+		<div id="l20p" style="background-color:red;width:60px;height:30px;text-align:center" onclick="openw(20)">
+			<p id="20" class="insusfont">20</p>
+		</div>
+		<h3 style="position: relative;left: 25px;top: -12px;font-family:SimHei;color:black;font-size:20px;font-weight:bold;"></h3>
+	</div>
+
+	<div id="l19">
+		<div id="l19p" style="background-color:red;width:60px;height:30px;text-align:center" onclick="openw(19)">
+			<p id="19" class="insusfont">19</p>
+		</div>
+		<p style="position: relative;left: 25px;top: -12px;font-family:SimHei;color:black;font-size:20px;font-weight:bold;"></p>
+	</div>
+
+	<div id="l18">
+		<div id="l18p" style="background-color:red;width:60px;height:30px;text-align:center" onclick="openw(18)">
+			<p id="18" class="insusfont">18</p>
+		</div>
+		<p
+			style="position: relative;left: 25px;top: -12px;;font-family:SimHei;color:black;font-size:20px;font-weight:bold;"></p>
+	</div>
+
+	<div id="l17">
+		<div id="l17p" style="background-color:red;width:60px;height:30px;text-align:center" onclick="openw(17)">
+			<p id="17" class="insusfont">17</p>
+		</div>
+		<p style="position: relative;left: 25px;top: -12px;font-family:SimHei;color:black;font-size:20px;font-weight:bold;"></p>
+	</div>
+
+	<div id="l16">
+		<div id="l16p" style="background-color:red;width:60px;height:30px;text-align:center" onclick="openw(16)">
+			<p id="16" class="insusfont">16</p>
+		</div>
+		<p style="position: relative;left: 25px;top: -12px;font-family:SimHei;color:black;font-size:20px;font-weight:bold;"></p>
+	</div>
+
+	<div id="l15">
+		<div id="l15p" style="background-color:red;width:60px;height:30px;text-align:center" onclick="openw(15)">
+			<p id="15" class="insusfont">15</p>
+		</div>
+		<p style="position: relative;left: 25px;top: -12px;font-family:SimHei;color:black;font-size:20px;font-weight:bold;"></p>
+	</div>
+
+	<div id="l14">
+		<div id="l14p"  style="background-color:red;width:60px;height:30px;text-align:center" onclick="openw(14)">
+			<p id="14" class="insusfont">14</p>
+		</div>
+		<p style="position: relative;left: 25px;top: -12px;font-family:SimHei;color:black;font-size:20px;font-weight:bold;"></p>
+	</div>
+
+	<div id="l13">
+		<div id="l13p" style="background-color:red;width:60px;height:30px;text-align:center" onclick="openw(13)">
+			<p id="13" class="insusfont">13</p>
+		</div>
+		<p style="position: relative;left: 25px;top: -12px;font-family:SimHei;color:black;font-size:20px;font-weight:bold;"></p>
+	</div>
+	
+	<div id="l12">
+		<div id="l12p" style="background-color:red;width:60px;height:30px;text-align:center" onclick="openw(12)">
+			<p id="12" class="insusfont">12</p>
+		</div>
+		<p style="position: relative;left: 25px;top: -12px;font-family:SimHei;color:black;font-size:20px;font-weight:bold;"></p>
+	</div>
+	
+	<div id="l11">
+		<div id="l11p" style="background-color:red;width:60px;height:30px;text-align:center" onclick="openw(11)">
+			<p id="11" class="insusfont">11</p>
+		</div>
+		<p style="position: relative;left: 25px;top: -12px;font-family:SimHei;color:black;font-size:20px;font-weight:bold;"></p>
+	</div>
+
+	
+
+	<div id="pos"></div>
+
+	<!-- 弹窗-->
+	<div id="popup" class="popup">
+		<a href="#" id="closer" class="popup-closer"></a>
+		<div id="content"></div>
+	</div>
+
+	<script>
+/**---------------------------------------------------------
+说明：1、server的方式不太好用，直接将图片作为数据源是可行的；
+2、采用的是前端webgis开源库openlayers3是免费商用的协议；
+----------------------------------------------------------**/
+
+      //图片的范围像素距离
+      var extent = [0, 0, 1470, 826];
+
+      //前端定义的笛卡尔平面坐标系
+      var projection = new ol.proj.Projection({
+        code: 'yytest',
+        units: 'pixels',
+        extent: extent
+      });
+
+      //声明地图对象，添加图片
+      var map = new ol.Map({
+        layers: [
+          new ol.layer.Image({
+            source: new ol.source.ImageStatic({
+              url:'../../picture/map.png',  /*图片地址,图片不能过大，浏览器有单个图片大小内存限制，过大的图片需要瓦片处理*/
+              projection: projection,
+              imageExtent: extent
+            })
+          })
+        ],
+        target: 'map',   /*装载地图元素的div容器的id*/
+        view: new ol.View({
+          projection: projection,
+          center: ol.extent.getCenter(extent),
+          zoom: 2,    /*默认缩放级别*/
+          maxZoom: 2,  /*设置地图的最大缩放级别*/
+          minZoom: 2
+        })
+      });
+
+
+      //-------添加marker标记---------小demo,在地图上添加标记
+      var marker = new ol.Overlay({
+        position: [0, 0],   /*坐标像素坐标*/
+        positioning: 'center-center',  /*标签处于坐标的方位，正中- center-center  正下 center-top*/
+        element: document.getElementById('marker'),  /*标签对应的div元素， 可替换成其他的元素*/
+      });
+      
+ 
+       var markerl20 = new ol.Overlay({
+        position: [540, 100],   
+        positioning: 'center-center',  
+        element: document.getElementById('l20'),  
+      });
+      
+      var markerl19 = new ol.Overlay({
+        position: [685, 100], 
+        positioning: 'center-center',  
+        element: document.getElementById('l19'),  
+      });
+      
+       var markerl18 = new ol.Overlay({
+        position: [825, 100],   
+        positioning: 'center-center',  
+        element: document.getElementById('l18'), 
+      });
+      
+       var markerl17 = new ol.Overlay({
+        position: [955, 100],  
+        positioning: 'center-center',  
+        element: document.getElementById('l17'),  
+      });
+      
+        var markerl16 = new ol.Overlay({
+        position: [1123, 100],  
+        positioning: 'center-center', 
+        element: document.getElementById('l16'), 
+      });
+  
+        var markerl15 = new ol.Overlay({
+        position: [1250, 100],   
+        positioning: 'center-center', 
+        element: document.getElementById('l15'),  
+      });
+      
+        var markerl14 = new ol.Overlay({
+        position: [1368, 300],   
+        positioning: 'center-center', 
+        element: document.getElementById('l14'),  
+      });
+      
+        var markerl13 = new ol.Overlay({
+        position: [1250, 370],   
+        positioning: 'center-center', 
+        element: document.getElementById('l13'),  
+      });
+      
+       var markerl12 = new ol.Overlay({
+        position: [1098, 427],   
+        positioning: 'center-center', 
+        element: document.getElementById('l12'),  
+      });
+      
+       var markerl11 = new ol.Overlay({
+        position: [1110, 568],   
+        positioning: 'center-center', 
+        element: document.getElementById('l11'),  
+      });
+      
+    
+
+      map.addOverlay(marker);  /*给地图添加叠加层*/
+	 
+	  map.addOverlay(marker20);
+	  map.addOverlay(marker19);
+	  map.addOverlay(marker18);
+	  map.addOverlay(marker17);
+	  map.addOverlay(marker16);
+	  map.addOverlay(marker15);
+	  map.addOverlay(marker14);
+	  map.addOverlay(marker13);
+	  map.addOverlay(marker12);
+	  map.addOverlay(marker11);
+	 
+      //--------点击弹窗--------弹窗显示坐标demo
+
+      var popModel = document.getElementById('popup');
+      var popContent = document.getElementById('content');
+      var popClose = document.getElementById('closer');
+
+      var myPopUup = new ol.Overlay(({
+        element: popModel,
+        autoPan: true,     /*设置标签平移效果*/
+        autoPanAnimation: {
+          duration: 150   /*平移时间*/
+        }
+      }));
+    </script>
+</body>
+</html>

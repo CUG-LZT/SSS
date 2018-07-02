@@ -1,0 +1,984 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>Static Image</title>
+<link rel="stylesheet" href="../css/ol.css" type="text/css">
+
+<script src="../js/framejs/ol.js"></script>
+<script type="text/javascript" src="../js/framejs/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../js/framejs/jquery.tempgauge.js"></script>
+<script src="../js/framejs/raphael.2.1.0.min.js"></script>
+<script src="../js/framejs/justgage.1.0.1.min.js"></script>
+<script type="text/javascript" src="../js/myjs/map.js"></script>
+</head>
+
+<style>
+/*弹窗样式*/
+.popup {
+	position: absolute;
+	background-color: white;
+	-webkit-filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+	filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+	padding: 15px;
+	border-radius: 10px;
+	border: 1px solid #cccccc;
+	bottom: 12px;
+	left: -50px;
+	min-width: 280px;
+}
+
+.popup:after,.popup:before {
+	top: 100%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.popup:after {
+	border-top-color: white;
+	border-width: 10px;
+	left: 48px;
+	margin-left: -10px;
+}
+
+.popup:before {
+	border-top-color: #cccccc;
+	border-width: 11px;
+	left: 48px;
+	margin-left: -11px;
+}
+
+.popup-closer {
+	text-decoration: none;
+	position: absolute;
+	top: 2px;
+	right: 8px;
+}
+
+.popup-closer:after {
+	content: "✖";
+}
+
+@font-face {
+	font-family: LcdD;
+	src: url(../font/Dot_Spot.ttf) format("truetype");
+}
+
+@font-face {
+	font-family: Lcd2;
+	src: url(../font/digital_display_tfb.ttf) format("truetype");
+}
+
+p.insusfont {
+	font-family: LcdD;
+	font-size: 20px;
+	color: #00DB00;
+}
+
+span.LCD {
+	font-family: Lcd2;
+	color: black;
+	font-size: 17px;
+}
+
+@
+-webkit-keyframes twinkling { /*透明度由0到1*/ 0%{
+	opacity: 0; /*透明度为0*/
+}
+
+100%{
+opacity
+:
+1; /*透明度为1*/
+
+    
+}
+}
+@
+keyframes twinkling { /*透明度由0到1*/ 0%{
+	opacity: 0; /*透明度为0*/
+}
+100%{
+opacity
+:
+1; /*透明度为1*/
+
+    
+}
+}
+</style>
+
+<body style="background-color:#FFFFF4">
+	<div id="C"
+		style="float:left;background-color:#00DB00;width: 80px;
+    height: 30px;-webkit-border-radius: 100px / 50px; -moz-border-radius: 100px / 50px; border-radius: 100px / 50px;text-align:center">
+		<b>数据通信</b>
+	</div>
+	
+	<div style="float:left;width:20px;">&nbsp;&nbsp;</div>
+	
+	<div id="P"
+		style="float:left;background-color:#FF2D2D;width: 80px;
+    height: 30px;-webkit-border-radius: 100px / 50px; -moz-border-radius: 100px / 50px; border-radius: 100px / 50px;text-align:center;">
+		<b>压差</b>
+	</div>
+	
+	<div style="float:left;width:20px;">&nbsp;&nbsp;</div>
+	
+	<div id="T"
+		style="float:left;background-color:#00DB00;width: 80px;
+    height: 30px;-webkit-border-radius: 100px / 50px; -moz-border-radius: 100px / 50px; border-radius: 100px / 50px;text-align:center">
+		<b>温度</b>
+	</div>
+	<div style="float:left;width:20px;">&nbsp;&nbsp;</div>
+	
+	<div id="RH"
+		style="float:left;background-color:#00DB00;width: 80px;
+    height: 30px;-webkit-border-radius: 100px / 50px; -moz-border-radius: 100px / 50px; border-radius: 100px / 50px;text-align:center">
+		<b>湿度</b>
+	</div>
+	<div style="float:left;width:20px;">&nbsp;&nbsp;</div>
+	
+	<div id="LED"
+		style="float:left;background-color:#00DB00;width: 80px;
+    height: 30px;-webkit-border-radius: 100px / 50px; -moz-border-radius: 100px / 50px; border-radius: 100px / 50px;text-align:center">
+		<b>无影灯</b>
+	</div>
+	<!-- ------------------------------------------------------------------------------- -->
+	<div id="map" class="map" ></div>
+	<div id="marker" style="height:10px;width:10px;"></div>
+
+	<div id="m1">
+		<div
+			style="background-color:#272727;width:50px;height:20px;text-align:center;" onclick="openw('pof1to5')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p1" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+
+	<div id="m2">
+		<div
+			style="background-color:#272727;width:50px;height:20px;text-align:center"
+			onclick="openw('pof1to5')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p2" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+
+	<div id="m3">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof1to5')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p3" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+
+	<div id="m4">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof1to5')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p4" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+
+	<div id="m5">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof1to5')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p5" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+
+	<div id="m6">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof6to10')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p6" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+
+	<div id="m7">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof6to10')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p7" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+
+	<div id="m8">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof6to10')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p8" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+
+	<div id="m9">
+		<div
+			style="background-color:black;width:55px;height:20px;text-align:center"
+			onclick="openw('pof6to10')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p9" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+
+	<div id="m10">
+		<div
+			style="background-color:black;width:55px;height:20px;text-align:center"
+			onclick="openw('pof6to10')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p10" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+
+	<div id="m11">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof11to15')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p11" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+
+	<div id="m12">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof11to15')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p12" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+
+	<div id="m13">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof11to15')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p13" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+
+	<div id="m14">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof11to15')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p14" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+	
+	<div id="m15">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof11to15')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p15" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+	
+	<div id="m16">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof16to20')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p16" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+	
+	<div id="m17">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof16to20')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p17" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+<div id="m18">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof16to20')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p18" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+<div id="m19">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof16to20')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p19" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+<div id="m20">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof16to20')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p20" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+<div id="m21">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof21to25')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p21" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+<div id="m22">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof21to25')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p22" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+<div id="m23">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof21to25')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p23" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+<div id="m24">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof21to25')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p24" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+<div id="m25">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof21to25')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p25" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+<div id="m26">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof26to28')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p26" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+<div id="m27">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof26to28')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p27" class="LCD" >PA</span>
+			</p>
+		</div>
+	</div>
+<div id="m28">
+		<div
+			style="background-color:black;width:50px;height:20px;text-align:center"
+			onclick="openw('pof26to28')">
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span  id="p28" class="LCD" >PA</span>
+			</p>
+		</div>
+		
+	</div>
+
+	
+	<div id="pos"></div>
+
+	
+	<div id="sum1" style="width:80px;height:56px;border:solid black 1px">
+	
+		<div id="sum1rh" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:#00DB00;padding:0px;margin:0px;text-align: center" onclick="openw('rhofonetofive')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" >R&nbsp;11&nbsp;:&nbsp;</span>
+				<span id="sum1rhdata" class="LCD" >R</span>
+				<span class="LCD" >%</span>
+			</p>
+		</div>
+		<div id="sum1t" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:red;text-align: center" onclick="openw('temperatureofonetofive')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD"  >T&nbsp;11&nbsp;:&nbsp;</span>
+				<span ID="sum1tdata" class="LCD"  >T</span>
+				<span class="LCD"  >&deg;C</span>
+			</p>
+		</div>
+		<div id="sum1led" style="width:80px;height:18px;background:#FF0000;text-align: center"  > 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" style="font-size:16px">D&nbsp;1&nbsp;1&nbsp;</span>
+				<!-- <span id="sum1leddata" class="LCD" style="font-size:13px">无</span> -->
+			</p>
+		</div>
+	</div>
+	
+	<div id="sum2" style="width:80px;height:56px;border:solid black 1px">
+	
+		<div id="sum2rh" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:#00DB00;padding:0px;margin:0px;text-align: center" onclick="openw('rhofonetofive')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" >R&nbsp;12&nbsp;:&nbsp;</span>
+				<span id="sum2rhdata" class="LCD" >R</span>
+				<span class="LCD" >%</span>
+			</p>
+		</div>
+		<div id="sum2t" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:red;text-align: center" onclick="openw('temperatureofonetofive')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD"  >T&nbsp;12&nbsp;:&nbsp;</span>
+				<span ID="sum2tdata" class="LCD"  >T</span>
+				<span class="LCD"  >&deg;C</span>
+			</p>
+		</div>
+		<div id="sum2led" style="width:80px;height:18px;background:#FF0000;text-align: center"  > 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" style="font-size:16px">D&nbsp;12&nbsp;</span>
+				<!-- <span id="sum2leddata" class="LCD" style="font-size:13px">无</span> -->
+			</p>
+		</div>
+	</div>
+	
+	<div id="sum3" style="width:80px;height:56px;border:solid black 1px">
+	
+		<div id="sum3rh" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:#00DB00;padding:0px;margin:0px;text-align: center" onclick="openw('rhofonetofive')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" >R&nbsp;13&nbsp;:&nbsp;</span>
+				<span id="sum3rhdata" class="LCD" >R</span>
+				<span class="LCD" >%</span>
+			</p>
+		</div>
+		<div id="sum3t" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:red;text-align: center" onclick="openw('temperatureofonetofive')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD"  >T&nbsp;13&nbsp;:&nbsp;</span>
+				<span ID="sum3tdata" class="LCD"  >T</span>
+				<span class="LCD"  >&deg;C</span>
+			</p>
+		</div>
+		<div id="sum3led" style="width:80px;height:18px;background:#FF0000;text-align: center"  > 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" style="font-size:16px">D&nbsp;1&nbsp;3&nbsp;</span>
+			<!-- 	<span id="sum3leddata" class="LCD" style="font-size:13px">无</span> -->
+			</p>
+		</div>
+	</div>
+	<div id="sum4" style="width:80px;height:56px;border:solid black 1px">
+	
+		<div id="sum4rh" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:#00DB00;padding:0px;margin:0px;text-align: center" onclick="openw('rhofonetofive')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" >R&nbsp;14&nbsp;:&nbsp;</span>
+				<span id="sum4rhdata" class="LCD" >R</span>
+				<span class="LCD" >%</span>
+			</p>
+		</div>
+		<div id="sum4t" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:red;text-align: center" onclick="openw('temperatureofonetofive')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD"  >T&nbsp;14&nbsp;:&nbsp;</span>
+				<span ID="sum4tdata" class="LCD"  >T</span>
+				<span class="LCD"  >&deg;C</span>
+			</p>
+		</div>
+		<div id="sum4led" style="width:80px;height:18px;background:#FF0000;text-align: center"  > 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" style="font-size:16px">D&nbsp;14&nbsp;</span>
+				<!-- <span id="sum4leddata" class="LCD" style="font-size:13px">无</span> -->
+			</p>
+		</div>
+	</div>
+	<div id="sum5" style="width:80px;height:56px;border:solid black 1px">
+	
+		<div id="sum5rh" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:#00DB00;padding:0px;margin:0px;text-align: center" onclick="openw('rhofonetofive')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" >R&nbsp;15&nbsp;:&nbsp;</span>
+				<span id="sum5rhdata" class="LCD" >R</span>
+				<span class="LCD" >%</span>
+			</p>
+		</div>
+		<div id="sum5t" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:red;text-align: center" onclick="openw('temperatureofonetofive')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD"  >T&nbsp;15&nbsp;:&nbsp;</span>
+				<span ID="sum5tdata" class="LCD"  >T</span>
+				<span class="LCD"  >&deg;C</span>
+			</p>
+		</div>
+		<div id="sum5led" style="width:80px;height:18px;background:#FF0000;text-align: center"  > 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" style="font-size:16px">D&nbsp;15&nbsp;</span>
+				<!-- <span id="sum5leddata" class="LCD" style="font-size:13px">无</span> -->
+			</p>
+		</div>
+	</div>
+	<div id="sum6" style="width:80px;height:56px;border:solid black 1px">
+	
+		<div id="sum6rh" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:#00DB00;padding:0px;margin:0px;text-align: center" onclick="openw('rhofsixtoten')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" >R&nbsp;16&nbsp;:&nbsp;</span>
+				<span id="sum6rhdata" class="LCD" >R</span>
+				<span class="LCD" >%</span>
+			</p>
+		</div>
+		<div id="sum16t" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:red;text-align: center" onclick="openw('temperatureofsixtoten')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD"  >T&nbsp;16&nbsp;:&nbsp;</span>
+				<span ID="sum6tdata" class="LCD"  >T</span>
+				<span class="LCD"  >&deg;C</span>
+			</p>
+		</div>
+		<div id="sum6led" style="width:80px;height:18px;background:#FF0000;text-align: center"  > 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" style="font-size:16px">D&nbsp;16&nbsp;</span>
+				<!-- <span id="sum6leddata" class="LCD" style="font-size:13px">无</span> -->
+			</p>
+		</div>
+	</div>
+	<div id="sum7" style="width:80px;height:56px;border:solid black 1px">
+	
+		<div id="sum7rh" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:#00DB00;padding:0px;margin:0px;text-align: center" onclick="openw('rhofsixtoten')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" >R&nbsp;17&nbsp;:&nbsp;</span>
+				<span id="sum7rhdata" class="LCD" >R</span>
+				<span class="LCD" >%</span>
+			</p>
+		</div>
+		<div id="sum7t" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:red;text-align: center"  onclick="openw('temperatureofsixtoten')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD"  >T&nbsp;17&nbsp;:&nbsp;</span>
+				<span ID="sum7tdata" class="LCD"  >T</span>
+				<span class="LCD"  >&deg;C</span>
+			</p>
+		</div>
+		<div id="sum7led" style="width:80px;height:18px;background:#FF0000;text-align: center"  > 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" style="font-size:16px">D&nbsp;17&nbsp;</span>
+				<!-- <span id="sum7leddata" class="LCD" style="font-size:13px">无</span> -->
+			</p>
+		</div>
+	</div>
+	<div id="sum8" style="width:80px;height:56px;border:solid black 1px">
+	
+		<div id="sum8rh" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:#00DB00;padding:0px;margin:0px;text-align: center" onclick="openw('rhofsixtoten')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" >R&nbsp;18&nbsp;:&nbsp;</span>
+				<span id="sum8rhdata" class="LCD" >R</span>
+				<span class="LCD" >%</span>
+			</p>
+		</div>
+		<div id="sum8t" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:red;text-align: center"  onclick="openw('temperatureofsixtoten')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD"  >T&nbsp;18&nbsp;:&nbsp;</span>
+				<span ID="sum8tdata" class="LCD"  >T</span>
+				<span class="LCD"  >&deg;C</span>
+			</p>
+		</div>
+		<div id="sum8led" style="width:80px;height:18px;background:#FF0000;text-align: center"  > 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" style="font-size:16px">D&nbsp;18&nbsp;</span>
+				<!-- <span id="sum8leddata" class="LCD" style="font-size:13px">无</span> -->
+			</p>
+		</div>
+	</div>
+	<div id="sum9" style="width:80px;height:56px;border:solid black 1px">
+	
+		<div id="sum9rh" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:#00DB00;padding:0px;margin:0px;text-align: center" onclick="openw('rhofsixtoten')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" >R&nbsp;19&nbsp;:&nbsp;</span>
+				<span id="sum9rhdata" class="LCD" >R</span>
+				<span class="LCD" >%</span>
+			</p>
+		</div>
+		<div id="sum19t" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:red;text-align: center"  onclick="openw('temperatureofsixtoten')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD"  >T&nbsp;19&nbsp;:&nbsp;</span>
+				<span ID="sum9tdata" class="LCD"  >T</span>
+				<span class="LCD"  >&deg;C</span>
+			</p>
+		</div>
+		<div id="sum9led" style="width:80px;height:18px;background:#FF0000;text-align: center"  > 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" style="font-size:16px">D&nbsp;19&nbsp;</span>
+				<!-- <span id="sum9leddata" class="LCD" style="font-size:13px">无</span> -->
+			</p>
+		</div>
+	</div>
+	<div id="sum10" style="width:80px;height:56px;border:solid black 1px">
+	
+		<div id="sum10rh" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:#00DB00;padding:0px;margin:0px;text-align: center" onclick="openw('rhofsixtoten')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" >R&nbsp;20&nbsp;:&nbsp;</span>
+				<span id="sum10rhdata" class="LCD" >R</span>
+				<span class="LCD" >%</span>
+			</p>
+		</div>
+		<div id="sum10t" style="width:80px;height:18px;border:solid black 1px;border-top:thin;border-left:thin;border-right:thin;background:red;text-align: center"  onclick="openw('temperatureofsixtoten')"> 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD"  >T&nbsp;20&nbsp;:&nbsp;</span>
+				<span ID="sum10tdata" class="LCD"  >T</span>
+				<span class="LCD"  >&deg;C</span>
+			</p>
+		</div>
+		<div id="sum10led" style="width:80px;height:18px;background:#FF0000;text-align: center"  > 
+			<p style="padding:0px;margin:0px;font-size:16px;font-weight:bold">
+				<span class="LCD" style="font-size:16px">D&nbsp;20&nbsp;</span>
+				<!-- <span id="sum10leddata" class="LCD" style="font-size:13px">无</span> -->
+			</p>
+		</div>
+	</div>
+	<!-- 弹窗<span id=""  class="LCD" style="padding:0px;margin:0px;color:black;font-size:16px;font-weight:bold;">D12</span>-->
+	<div id="popup" class="popup">
+		<a href="#" id="closer" class="popup-closer"></a>
+		<div id="content"></div>
+	</div>
+
+	<script>
+/**---------------------------------------------------------
+说明：1、server的方式不太好用，直接将图片作为数据源是可行的；
+2、采用的是前端webgis开源库openlayers3是免费商用的协议；
+----------------------------------------------------------**/
+
+      //图片的范围像素距离
+      var extent = [0, 0, 1470, 826];
+
+      //前端定义的笛卡尔平面坐标系
+      var projection = new ol.proj.Projection({
+        code: 'yytest',
+        units: 'pixels',
+        extent: extent
+      });
+
+      //声明地图对象，添加图片
+      var map = new ol.Map({
+        layers: [
+          new ol.layer.Image({
+            source: new ol.source.ImageStatic({
+              url:'../picture/endmap.png',  /*图片地址,图片不能过大，浏览器有单个图片大小内存限制，过大的图片需要瓦片处理*/
+              projection: projection,
+              imageExtent: extent
+            })
+          })
+        ],
+        target: 'map',   /*装载地图元素的div容器的id*/
+        view: new ol.View({
+          projection: projection,
+          center: ol.extent.getCenter(extent),
+          zoom: 2,    /*默认缩放级别*/
+          maxZoom: 6,  /*设置地图的最大缩放级别*/
+          minZoom: 2
+        })
+      });
+
+
+      //-------添加marker标记---------小demo,在地图上添加标记
+      var marker = new ol.Overlay({
+        position: [0, 0],   /*坐标像素坐标*/
+        positioning: 'center-center',  /*标签处于坐标的方位，正中- center-center  正下 center-top*/
+        element: document.getElementById('marker'),  /*标签对应的div元素， 可替换成其他的元素*/
+      });
+      
+      var marker1 = new ol.Overlay({
+        position: [30, 150], //从做往右，从下往上的距离  
+        positioning: 'center-center',  
+        element: document.getElementById('m1'),  
+      });
+      
+       var marker2 = new ol.Overlay({
+        position: [173, 150],  
+        positioning: 'center-center',  
+        element: document.getElementById('m2'),  
+      });
+      
+       var marker3 = new ol.Overlay({
+        position: [540, 164],   
+        positioning: 'center-center',  
+        element: document.getElementById('m3'),  
+      });
+      
+      var marker4 = new ol.Overlay({
+        position: [565, 30], 
+        positioning: 'center-center',  
+        element: document.getElementById('m4'),  
+      });
+      
+       var marker5 = new ol.Overlay({
+        position: [690, 164],   
+        positioning: 'center-center',  
+        element: document.getElementById('m5'), 
+      });
+      
+       var marker6 = new ol.Overlay({
+        position: [849, 164],  
+        positioning: 'center-center',  
+        element: document.getElementById('m6'),  
+      });
+      
+        var marker7 = new ol.Overlay({
+        position: [973, 164],  
+        positioning: 'center-center', 
+        element: document.getElementById('m7'), 
+      });
+  
+        var marker8 = new ol.Overlay({
+        position: [955, 30],   
+        positioning: 'center-center', 
+        element: document.getElementById('m8'),  
+      });
+      
+        var marker9 = new ol.Overlay({
+        position: [1110, 164],  
+        positioning: 'center-center', 
+        element: document.getElementById('m9'),  
+      });
+      
+        var marker10 = new ol.Overlay({
+        position: [1240, 30],
+        positioning: 'center-center',  
+        element: document.getElementById('m10'),  
+      });
+      
+      var marker11 = new ol.Overlay({
+        position: [1260, 164],   
+        positioning: 'center-center',  
+        element: document.getElementById('m11'),  
+      });
+      
+      var marker12 = new ol.Overlay({
+        position: [1182, 200],   
+        positioning: 'center-center',  
+        element: document.getElementById('m12'),  
+      });
+      
+      var marker13 = new ol.Overlay({
+        position: [1440, 200],   
+        positioning: 'center-center',  
+        element: document.getElementById('m13'),  
+      });
+      
+      var marker14 = new ol.Overlay({
+        position: [1380, 240],   
+        positioning: 'center-center',  
+        element: document.getElementById('m14'),  
+      });
+      
+       var marker15 = new ol.Overlay({
+        position: [1293, 222],   
+        positioning: 'center-center',  
+        element: document.getElementById('m15'),  
+      });
+      
+      var marker16 = new ol.Overlay({
+        position: [1254, 435],   
+        positioning: 'center-center',  
+        element: document.getElementById('m16'),  
+      });
+      
+       var marker17 = new ol.Overlay({
+        position: [1114, 222],   
+        positioning: 'center-center',  
+        element: document.getElementById('m17'),  
+      });
+      
+       var marker18 = new ol.Overlay({
+        position: [1114, 332],   
+        positioning: 'center-center',  
+        element: document.getElementById('m18'),  
+      });
+      
+       var marker19 = new ol.Overlay({
+        position: [1001, 444],   
+        positioning: 'center-center',  
+        element: document.getElementById('m19'),  
+      });
+      
+       var marker20 = new ol.Overlay({
+        position: [1075, 475],   
+        positioning: 'center-center',  
+        element: document.getElementById('m20'),  
+      });
+      
+       var marker21 = new ol.Overlay({
+        position: [1150, 475],   
+        positioning: 'center-center',  
+        element: document.getElementById('m21'),  
+      });
+      
+       var marker22 = new ol.Overlay({
+        position: [1001, 550],   
+        positioning: 'center-center',  
+        element: document.getElementById('m22'),  
+      });
+      
+       var marker23 = new ol.Overlay({
+        position: [1075, 510],   
+        positioning: 'center-center',  
+        element: document.getElementById('m23'),  
+      });
+      
+       var marker24 = new ol.Overlay({
+        position: [1150, 510],   
+        positioning: 'center-center',  
+        element: document.getElementById('m24'),  
+      });
+      var marker25 = new ol.Overlay({
+        position: [1420, 358],   
+        positioning: 'center-center',  
+        element: document.getElementById('m25'),  
+      });
+      var marker26 = new ol.Overlay({
+        position: [1283, 285],   
+        positioning: 'center-center',  
+        element: document.getElementById('m26'),  
+      });
+      var marker27 = new ol.Overlay({
+        position: [1001, 633],   
+        positioning: 'center-center',  
+        element: document.getElementById('m27'),  
+      });
+      var marker28 = new ol.Overlay({
+        position: [1001, 228],   
+        positioning: 'center-center',  
+        element: document.getElementById('m28'),  
+      });
+       //------------
+		var markersum1 = new ol.Overlay({
+        position: [1108, 572],   
+        positioning: 'center-center', 
+        element: document.getElementById('sum1'),  
+      });
+      var markersum2 = new ol.Overlay({
+        position: [1108, 418],   
+        positioning: 'center-center', 
+        element: document.getElementById('sum2'),  
+      });
+      var markersum3 = new ol.Overlay({
+        position: [1249, 362],   
+        positioning: 'center-center', 
+        element: document.getElementById('sum3'),  
+      });
+      var markersum4 = new ol.Overlay({
+        position: [1380, 296],   
+        positioning: 'center-center', 
+        element: document.getElementById('sum4'),  
+      });
+      var markersum5 = new ol.Overlay({
+        position: [1249, 113],   
+        positioning: 'center-center', 
+        element: document.getElementById('sum5'),  
+      });
+      var markersum6 = new ol.Overlay({
+        position: [1118, 113],   
+        positioning: 'center-center', 
+        element: document.getElementById('sum6'),  
+      });
+      var markersum7 = new ol.Overlay({
+        position: [959, 113],   
+        positioning: 'center-center', 
+        element: document.getElementById('sum7'),  
+      });
+      var markersum8 = new ol.Overlay({
+        position: [823, 113],   
+        positioning: 'center-center', 
+        element: document.getElementById('sum8'),  
+      });
+      var markersum9 = new ol.Overlay({
+        position: [683, 113],   
+        positioning: 'center-center', 
+        element: document.getElementById('sum9'),  
+      });
+      var markersum10 = new ol.Overlay({
+        position: [539, 113],   
+        positioning: 'center-center', 
+        element: document.getElementById('sum10'),  
+      });
+      
+      map.addOverlay(marker);  /*给地图添加叠加层*/
+	  map.addOverlay(marker1);
+	  map.addOverlay(marker2);
+	  map.addOverlay(marker3);
+	  map.addOverlay(marker4);
+	  map.addOverlay(marker5);
+	  map.addOverlay(marker6);
+	  map.addOverlay(marker7);
+	  map.addOverlay(marker8);
+	  map.addOverlay(marker9);
+	  map.addOverlay(marker10);
+	  map.addOverlay(marker11);
+	  map.addOverlay(marker12);
+	  map.addOverlay(marker13);
+	  map.addOverlay(marker14);
+	  map.addOverlay(marker15);
+	  map.addOverlay(marker16);
+	  map.addOverlay(marker17);
+	  map.addOverlay(marker18);
+	  map.addOverlay(marker19);
+	  map.addOverlay(marker20);
+	  map.addOverlay(marker21);
+	  map.addOverlay(marker22);
+	  map.addOverlay(marker23);
+	  map.addOverlay(marker24);
+	  map.addOverlay(marker25);
+	  map.addOverlay(marker26);
+	  map.addOverlay(marker27);
+	  map.addOverlay(marker28);
+	  //----
+	  map.addOverlay(markersum1);
+	  map.addOverlay(markersum2);
+	  map.addOverlay(markersum3);
+	  map.addOverlay(markersum4);
+	  map.addOverlay(markersum5);
+	  map.addOverlay(markersum6);
+	  map.addOverlay(markersum7);
+	  map.addOverlay(markersum8);
+	  map.addOverlay(markersum9);
+	  map.addOverlay(markersum10);  
+	 
+      //--------点击弹窗--------弹窗显示坐标demo
+
+      var popModel = document.getElementById('popup');
+      var popContent = document.getElementById('content');
+      var popClose = document.getElementById('closer');
+
+      var myPopUup = new ol.Overlay(({
+        element: popModel,
+        autoPan: true,     /*设置标签平移效果*/
+        autoPanAnimation: {
+          duration: 150   /*平移时间*/
+        }
+      }));
+      
+      
+ 
+    </script>
+</body>
+</html>
