@@ -27,7 +27,7 @@ public class WarningListener extends HttpServlet implements
 		// TODO Auto-generated method stub
 		timer = new java.util.Timer(true);
 		arg0.getServletContext().log("定时器已启动");
-		timer.schedule(new Dowarning(arg0.getServletContext()), 0, 3 * 60 * 1000);
+		timer.schedule(new Dowarning(arg0.getServletContext()), 0, 2 * 60 * 1000);
 		arg0.getServletContext().log("已经添加任务调度表");
 	}
 

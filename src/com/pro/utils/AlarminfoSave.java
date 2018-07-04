@@ -35,7 +35,10 @@ public class AlarminfoSave {
 		//获取id
 		idofalarmofpress = alarm.getAid();
 		
-		return idofalarmofpress;
+		if(idofalarmofpress != -1)
+			return idofalarmofpress;
+		else
+			return 0;
 	}
 
 	public static void update(int id , Timestamp etime) {

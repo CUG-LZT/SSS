@@ -128,7 +128,7 @@ public class DoAlarm extends TimerTask {
 				if (domofpress.size() == 0) {
 					if (AlarminfoSave.alarmofpressofid == -1) {
 						AlarminfoSave.alarmofpressofid = AlarminfoSave.add(stimeofpress, etime,"全局", "无压差数据上传", "未处理","通讯异常");
-						System.out.println("AlarminfoSave.alarmofpressofid: "+AlarminfoSave.alarmofpressofid);
+						//System.out.println("AlarminfoSave.alarmofpressofid: "+AlarminfoSave.alarmofpressofid);
 					} else{
 						//如果c1不是0而是一个id那说明，在上一次之后的时间内依然没有数据上传，只需要更新报警的结束时间就可以了
 						AlarminfoSave.update(AlarminfoSave.alarmofpressofid, etime);
@@ -139,88 +139,88 @@ public class DoAlarm extends TimerTask {
 				
 				//循环统计判P1-P28异常次数
 				for (int i = 0; i < domofpress.size(); i++) {
-					if (domofpress.get(i).getDp1() > dp1 || 0 >= domofpress.get(i).getDp1()) {
+					if (domofpress.get(i).getDp1() > dp1 || 0 > domofpress.get(i).getDp1()) {
 						sumofpress[0]++;
 					}
-					if (domofpress.get(i).getDp2() > dp2 || 0 >= domofpress.get(i).getDp2()) {
+					if (domofpress.get(i).getDp2() > dp2 || 0 > domofpress.get(i).getDp2()) {
 						sumofpress[1]++;
 					}
-					if (domofpress.get(i).getDp3() > dp3 || 0 >= domofpress.get(i).getDp3()) {
+					if (domofpress.get(i).getDp3() > dp3 || 0 > domofpress.get(i).getDp3()) {
 						sumofpress[2]++;
 					}
-					if (domofpress.get(i).getDp4() > dp4 || 0 >= domofpress.get(i).getDp4()) {
+					if (domofpress.get(i).getDp4() > dp4 || 0 > domofpress.get(i).getDp4()) {
 						sumofpress[3]++;
 					}
-					if (domofpress.get(i).getDp5() > dp5 || 0 >= domofpress.get(i).getDp5()) {
+					if (domofpress.get(i).getDp5() > dp5 || 0 > domofpress.get(i).getDp5()) {
 						sumofpress[4]++;
 					}
-					if (domofpress.get(i).getDp6() > dp6 || 0 >= domofpress.get(i).getDp6()) {
+					if (domofpress.get(i).getDp6() > dp6 || 0 > domofpress.get(i).getDp6()) {
 						sumofpress[5]++;
 					}
-					if (domofpress.get(i).getDp7() > dp7 || 0 >= domofpress.get(i).getDp7()) {
+					if (domofpress.get(i).getDp7() > dp7 || 0 > domofpress.get(i).getDp7()) {
 						sumofpress[6]++;
 					}
-					if (domofpress.get(i).getDp8() > dp8 || 0 >= domofpress.get(i).getDp8()) {
+					if (domofpress.get(i).getDp8() > dp8 || 0 > domofpress.get(i).getDp8()) {
 						sumofpress[7]++;
 					}
-					if (domofpress.get(i).getDp9() > dp9 || 0 >= domofpress.get(i).getDp9()) {
+					if (domofpress.get(i).getDp9() > dp9 || 0 > domofpress.get(i).getDp9()) {
 						sumofpress[8]++;
 					}
-					if (domofpress.get(i).getDp10() > dp10 || 0 >= domofpress.get(i).getDp10()) {
+					if (domofpress.get(i).getDp10() > dp10 || 0 > domofpress.get(i).getDp10()) {
 						sumofpress[9]++;
 					}
-					if (domofpress.get(i).getDp11() > dp11 || 0 >= domofpress.get(i).getDp11()) {
+					if (domofpress.get(i).getDp11() > dp11 || 0 > domofpress.get(i).getDp11()) {
 						sumofpress[10]++;
 					}
-					if (domofpress.get(i).getDp12() > dp12 || 0 >= domofpress.get(i).getDp12()) {
+					if (domofpress.get(i).getDp12() > dp12 || 0 > domofpress.get(i).getDp12()) {
 						sumofpress[11]++;
 					}
-					if (domofpress.get(i).getDp13() > dp13 || 0 >= domofpress.get(i).getDp13()) {
+					if (domofpress.get(i).getDp13() > dp13 || 0 > domofpress.get(i).getDp13()) {
 						sumofpress[12]++;
 					}
-					if (domofpress.get(i).getDp14() > dp14 || 0 >= domofpress.get(i).getDp14()) {
+					if (domofpress.get(i).getDp14() > dp14 || 0 > domofpress.get(i).getDp14()) {
 						sumofpress[13]++;
 					}
-					if (domofpress.get(i).getDp15() > dp15 || 0 >= domofpress.get(i).getDp15()) {
+					if (domofpress.get(i).getDp15() > dp15 || 0 > domofpress.get(i).getDp15()) {
 						sumofpress[14]++;
 					}
-					if (domofpress.get(i).getDp16() > dp16 || 0 >= domofpress.get(i).getDp16()) {
+					if (domofpress.get(i).getDp16() > dp16 || 0 > domofpress.get(i).getDp16()) {
 						sumofpress[15]++;
 					}
-					if (domofpress.get(i).getDp17() > dp17 || 0 >= domofpress.get(i).getDp17()) {
+					if (domofpress.get(i).getDp17() > dp17 || 0 > domofpress.get(i).getDp17()) {
 						sumofpress[16]++;
 					}
-					if (domofpress.get(i).getDp18() > dp18 || 0 >= domofpress.get(i).getDp18()) {
+					if (domofpress.get(i).getDp18() > dp18 || 0 > domofpress.get(i).getDp18()) {
 						sumofpress[17]++;
 					}
-					if (domofpress.get(i).getDp19() < dp19h || dp19l < domofpress.get(i).getDp19()) {
+					if (!(domofpress.get(i).getDp19() >= dp19h || dp19l >= domofpress.get(i).getDp19())) {
 						sumofpress[18]++;
 					}
-					if (domofpress.get(i).getDp20() < dp20h || dp20l < domofpress.get(i).getDp20()) {
+					if (!(domofpress.get(i).getDp20() >= dp20h || dp20l >= domofpress.get(i).getDp20())) {
 						sumofpress[19]++;
 					}
-					if (domofpress.get(i).getDp21() < dp21h || dp21l < domofpress.get(i).getDp21()) {
+					if (!(domofpress.get(i).getDp21() >= dp21h || dp21l >= domofpress.get(i).getDp21())) {
 						sumofpress[20]++;
 					}
-					if (domofpress.get(i).getDp22() < dp22h || dp22l < domofpress.get(i).getDp22()) {
+					if (!(domofpress.get(i).getDp22() >= dp22h || dp22l >= domofpress.get(i).getDp22())) {
 						sumofpress[21]++;
 					}
-					if (domofpress.get(i).getDp23() < dp23h || dp23l < domofpress.get(i).getDp23()) {
+					if (!(domofpress.get(i).getDp23() >= dp23h || dp23l >= domofpress.get(i).getDp23())) {
 						sumofpress[22]++;
 					}
-					if (domofpress.get(i).getDp24() < dp24h || dp24l < domofpress.get(i).getDp24()) {
+					if (!(domofpress.get(i).getDp24() >= dp24h || dp24l >= domofpress.get(i).getDp24())) {
 						sumofpress[23]++;
 					}
-					if (domofpress.get(i).getDp25() > dp25 || 0 >= domofpress.get(i).getDp25()) {
+					if (domofpress.get(i).getDp25() > dp25 || 0 > domofpress.get(i).getDp25()) {
 						sumofpress[24]++;
 					}
-					if (domofpress.get(i).getDp26() > dp26 || 0 >= domofpress.get(i).getDp26()) {
+					if (domofpress.get(i).getDp26() > dp26 || 0 > domofpress.get(i).getDp26()) {
 						sumofpress[25]++;
 					}
-					if (domofpress.get(i).getDp27() > dp27 || 0 >= domofpress.get(i).getDp27()) {
+					if (domofpress.get(i).getDp27() > dp27 || 0 > domofpress.get(i).getDp27()) {
 						sumofpress[26]++;
 					}
-					if (domofpress.get(i).getDp28() > dp28 || 0 >= domofpress.get(i).getDp28()) {
+					if (domofpress.get(i).getDp28() > dp28 || 0 > domofpress.get(i).getDp28()) {
 						sumofpress[27]++;
 					}
 				}

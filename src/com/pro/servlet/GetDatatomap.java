@@ -201,7 +201,7 @@ public class GetDatatomap extends HttpServlet {
 						params.put("p"+i+"c", 0);
 					}
 				}else{
-					if((double)params.get("p"+i) <= (double)params_stand.get("dp"+i) && (double)params.get("p"+i) > 0.0){
+					if((double)params.get("p"+i) <= (double)params_stand.get("dp"+i) && (double)params.get("p"+i) >= 0.0){
 						params.put("p"+i+"c", 1);
 					}else{
 						params.put("p"+i+"c", 0);
@@ -236,8 +236,9 @@ public class GetDatatomap extends HttpServlet {
 			//获取各个气压的标志位，统计不是-1的个数，大于0 说明有气压数据异常
 			int sunofp = 0 ;
 			for(int i = 0 ; i < 28 ; i++){
-				if(AlarminfoSave.idofp[i] != -1)
+				if(AlarminfoSave.idofp[i] != -1){
 					sunofp++;
+				}
 			}
 			if(sunofp > 0){
 				params.put("p", 0);       //红色
@@ -246,6 +247,7 @@ public class GetDatatomap extends HttpServlet {
 			}else{
 				params.put("p", 1);            //都没有 绿色
 			}
+			
 			//获取各个温度的标志位，统计不是-1的个数，大于0 说明有温度数据异常
 			int sunoft = 0 ;
 			for(int i = 0 ; i < 10 ; i++){
@@ -255,7 +257,7 @@ public class GetDatatomap extends HttpServlet {
 			if(sunoft > 0){
 				params.put("t", 0);
 			}else if(AlarminfoSave.warningoftempofid == 1){  //一半的时间内有异常的  黄色
-				params.put("p", 2);
+				params.put("t", 2);
 			}else{
 				params.put("t", 1);
 			}
@@ -269,7 +271,7 @@ public class GetDatatomap extends HttpServlet {
 			if(sunofrh > 0){
 				params.put("rh", 0);
 			}else if(AlarminfoSave.warningofrhofid == 1){  //一半的时间内有异常的  黄色
-				params.put("p", 2);
+				params.put("rh", 2);
 			}else{
 				params.put("rh", 1);
 			}
