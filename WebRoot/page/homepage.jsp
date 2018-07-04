@@ -251,7 +251,7 @@
 		$('#loginOut').click(function() {
 			$.messager.confirm('系统提示', '您确定退出本次登录吗？', function(r) {
 				if (r) {
-					location.href = '/theatre/login.jsp';
+					location.href = '/sss/login.jsp';
 				}
 			});
 		});
