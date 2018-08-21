@@ -1,5 +1,5 @@
 var sum ;
-
+var suni = 0;
 function openw(u){
 	var url = 'menuPage/'+u+'.jsp';
 	window.open(url, '', 'height=500, width=600, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no');  
@@ -490,7 +490,11 @@ function ajaxi() {
         		inittemp(sum);//初始化锁定状态
         	}
         	else
-        		alert("数据通讯异常！无法获取初始状态！");
+        		if(suni < 1){
+        			alert("数据通讯异常！无法获取初始状态！");
+        			suni++;
+        		}
+        		
         },  
         error: function (err) {
             console.log(err);  

@@ -194,14 +194,14 @@ public class GetDatatomap extends HttpServlet {
 			
 			//-------------------------------------------------------------------------
 			for(int i = 1 ; i <= 28 ; i++){
-				if(i >= 19 && i <= 24){//正负气压 大于大的 小于小的
+				if(i >= 19 && i <= 24){//正负气压 大于大的 小于小的为绿色
 					if((double)params.get("p"+i) >= (double)params_stand.get("dp"+i+"h") || (double)params.get("p"+i) <= (double)params_stand.get("dp"+i+"l")){
 						params.put("p"+i+"c", 1);
 					}else{
 						params.put("p"+i+"c", 0);
 					}
-				}else{
-					if((double)params.get("p"+i) <= (double)params_stand.get("dp"+i) && (double)params.get("p"+i) >= 0.0){
+				}else{//正气压 大于设定值为绿色
+					if((double)params.get("p"+i) >= (double)params_stand.get("dp"+i)){
 						params.put("p"+i+"c", 1);
 					}else{
 						params.put("p"+i+"c", 0);
